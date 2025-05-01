@@ -17,6 +17,7 @@ import {
 } from '../../services/dogService';
 import { searchLocations, getLocationsByZips } from '../../services/locationService';
 import { useFavorites } from '../../context/FavoritesContext';
+import LogoutButton from '../../components/LogoutButton/LogoutButton';
 import './SearchPage.css';
 
 const kmToDegLat = (km: number) => km / 111;
@@ -272,6 +273,7 @@ const SearchPage: React.FC = () => {
 
   return (
     <div className="search-page-container">
+      <LogoutButton />
       <header className="search-hero">
         <h1>🐶 Find Your Next Best Friend</h1>
         <p>Use the filters below to find dogs by breed, age, and location, or view your saved favorites.</p>
