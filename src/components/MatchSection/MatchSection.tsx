@@ -13,7 +13,7 @@ const MatchSection: React.FC<MatchSectionProps> = ({
   return (
     <>
       <p className="match-instruction">
-        Turn your 🤍 on your favorite pups below, then click "Find My Match" to discover your perfect companion!
+        Turn your 🤍 to 💛 on your favorite pups below, then click "Find My Match" to discover your perfect companion!
       </p>
       <div className="match-section">
         <button
