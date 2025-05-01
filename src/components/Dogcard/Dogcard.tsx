@@ -1,14 +1,12 @@
 import React from 'react';
 import './DogCard.css';
+import { useFavorites } from '../../context/FavoritesContext';
 import { Dog } from '../../types/Dog';
 
-interface DogCardProps {
-  dog: Dog;
-  isFavorite?: boolean;
-  onToggleFavorite?: (id: string) => void;
-}
+const DogCard: React.FC<{ dog: Dog }> = ({ dog }) => {
+  const { favorites, toggleFavorite } = useFavorites();
+  const isFav = favorites.includes(dog.id);
 
-const DogCard: React.FC<DogCardProps> = ({ dog, isFavorite = false, onToggleFavorite }) => {
   return (
     <div className="dog-card">
       <img src={dog.img} alt={dog.name} className="dog-image" />
@@ -16,14 +14,13 @@ const DogCard: React.FC<DogCardProps> = ({ dog, isFavorite = false, onToggleFavo
       <p className="dog-breed">{dog.breed} · {dog.age} yrs</p>
       <p className="dog-location">📍 {dog.zip_code}</p>
 
-      {onToggleFavorite && (
-        <button
-          className={`favorite-button ${isFavorite ? 'favorited' : ''}`}
-          onClick={() => onToggleFavorite(dog.id)}
-        >
-          {isFavorite ? '💛' : '🤍'}
-        </button>
-      )}
+      <button
+        className="favorite-button"
+        onClick={() => toggleFavorite(dog.id)}
+        aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
+      >
+        {isFav ? '💛' : '🤍'}
+      </button>
     </div>
   );
 };

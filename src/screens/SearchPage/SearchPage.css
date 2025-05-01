@@ -85,18 +85,6 @@
     width: 60px;
   }
   
-  .toggle-group {
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .toggle-group input {
-    width: auto;
-    margin: 0;
-    transform: scale(1.2);
-  }
-  
   .reset-button {
     align-self: flex-end;
     padding: 8px 16px;
@@ -155,5 +143,35 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 20px;
+  }
+  
+  /* Tab‐style toggle between All Dogs / Favorites */
+.filter-tabs {
+    display: inline-flex;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  
+  .filter-tabs button {
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: #444;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .filter-tabs button.active {
+    background: #faad2f;
+    color: #fff;
+  }
+  
+  .filter-tabs button:not(.active):hover {
+    background: #f0f0f0;
   }
   
