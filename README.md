@@ -73,12 +73,15 @@ npm run dev
 ```
 
 ## 📚 API Endpoints Used
-Endpoint	Purpose
-POST /auth/login	Authenticate user
-POST /auth/logout	End session
-GET /dogs/breeds	Load all available breeds
-GET /dogs/search	Search/filter dog IDs
-POST /dogs	Fetch details for selected dogs
-POST /dogs/match	Submit favorites, get 1 match
-POST /locations	Fetch location info by ZIP
-POST /locations/search	Search for ZIPs via geo/city
+
+| **Endpoint**             | **Purpose**                            |
+|--------------------------|----------------------------------------|
+| `POST /auth/login`       | Authenticate user                      |
+| `POST /auth/logout`      | End session                            |
+| `GET /dogs/breeds`       | Load all available breeds              |
+| `GET /dogs/search`       | Search and filter dog IDs              |
+| `POST /dogs`             | Fetch details for selected dog IDs     |
+| `POST /dogs/match`       | Submit favorites and get one match     |
+| `POST /locations`        | Fetch location information by ZIP code |
+| `POST /locations/search` | Search ZIP codes via geo or city       |
+
