@@ -1,7 +1,30 @@
-.match-page-container {
+.match-page-bg {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  .match-page-bg::before {
+    content: '';
+    position: fixed;
+    inset: 0;                   
+    background-image: url('../../assets/paw-print.svg');
+    background-repeat: repeat;
+    background-size: 180px 180px;
+    opacity: 0.02;
+    z-index: -1;                  
+    pointer-events: none;          
+  }
+  
+  .match-page-container {
+    position: relative;
     max-width: 400px;
     margin: 2rem auto;
+    padding: 2rem;
     text-align: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    z-index: 1;
   }
   
   .match-page-container h1 {
@@ -11,10 +34,9 @@
   
   .match-loading,
   .match-error {
-    text-align: center;
     font-size: 1rem;
     color: #666;
-    margin-top: 2rem;
+    margin: 1.5rem 0;
   }
   
   .back-button {

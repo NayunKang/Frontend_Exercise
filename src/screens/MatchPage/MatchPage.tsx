@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import DogCard from '../../components/Dogcard/Dogcard';
-import { Dog } from '../../types/Dog';
+import { Dog } from '../../types/Dog';         
 import { getDogsByIds } from '../../services/dogService';
 import './MatchPage.css';
 
@@ -24,16 +24,18 @@ const MatchPage: React.FC = () => {
     })();
   }, [id]);
 
-  if (error) return <p className="match-error">{error}</p>;
-  if (!dog)   return <p className="match-loading">Loading your match…</p>;
+  if (error)   return <p className="match-error">{error}</p>;
+  if (!dog)    return <p className="match-loading">Loading your match…</p>;
 
   return (
-    <div className="match-page-container">
-      <h1>Your Perfect Match!</h1>
-      <DogCard dog={dog} />
-      <button className="back-button" onClick={() => navigate('/search')}>
-        ← Back to Search
-      </button>
+    <div className="match-page-bg">
+      <div className="match-page-container">
+        <h1>Your Perfect Match!</h1>
+        <DogCard dog={dog} />
+        <button className="back-button" onClick={() => navigate('/search')}>
+          ← Back to Search
+        </button>
+      </div>
     </div>
   );
 };
