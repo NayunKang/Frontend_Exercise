@@ -1,0 +1,159 @@
+.search-page-container {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f7f7f7;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Hero */
+  .search-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px 40px;
+    text-align: center;
+    background-color: #fdfdfd;
+    z-index: 0;
+  }
+  
+  .search-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('../../assets/paw-print.svg');
+    background-repeat: repeat;
+    background-size: 180px;
+    opacity: 0.03;
+    z-index: -1;
+  }
+  
+  .search-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .search-hero p {
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  /* Filter Panel */
+  .filter-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: #fff;
+    padding: 16px 24px;
+    margin: -24px auto 24px;
+    max-width: 1200px;
+    border-radius: 12px;
+    /* flat panel: no heavy shadow */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    flex: 1 1 200px;
+  }
+  
+  .filter-group label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #444;
+  }
+  
+  .filter-group input,
+  .filter-group select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: #fff;
+  }
+  
+  .age-inputs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .age-inputs input {
+    width: 60px;
+  }
+  
+  .toggle-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .toggle-group input {
+    width: auto;
+    margin: 0;
+    transform: scale(1.2);
+  }
+  
+  .reset-button {
+    align-self: flex-end;
+    padding: 8px 16px;
+    background: #faad2f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .reset-button:hover {
+    background: #e6991b;
+  }
+  
+  /* Pagination (moved up) */
+  .hero-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+  
+  .hero-pagination button {
+    padding: 8px 16px;
+    background: #faad2f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .hero-pagination button:disabled {
+    background: #ddd;
+    cursor: not-allowed;
+  }
+  
+  .hero-pagination button:hover:enabled {
+    background: #e6991b;
+  }
+  
+  .hero-pagination span {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  /* Dog Grid */
+  .dog-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
