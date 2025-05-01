@@ -1,0 +1,16 @@
+.dog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+  gap: 24px;
+  max-width: 1400px;
+  margin: 24px auto; 
+  padding: 20px;
+}
+
+.dog-list-empty {
+  grid-column: 1 / -1; 
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 1.1rem;
+} 

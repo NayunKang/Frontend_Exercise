@@ -1,5 +1,5 @@
 import React from 'react';
-import './DogCard.css';
+import './Dogcard.css';
 import { useFavorites } from '../../context/FavoritesContext';
 import { Dog } from '../../types/Dog';
 

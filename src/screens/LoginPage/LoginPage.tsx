@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import { useAuth } from '../../context/AuthContext';
 
 const LoginPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   // Handles form submission and authentication logic
@@ -32,7 +34,8 @@ const LoginPage = () => {
       });
 
       if (response.ok) {
-        navigate('/search'); // redirect after successful login
+        login(); 
+        navigate('/search');
       } else {
         setError('Login failed. Please check your name and email.');
       }

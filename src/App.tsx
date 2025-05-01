@@ -8,26 +8,29 @@ import {
 import { FavoritesProvider } from './context/FavoritesContext';
 import LoginPage from './screens/LoginPage/LoginPage';
 import SearchPage from './screens/SearchPage/SearchPage';
+import MatchPage from './screens/MatchPage/MatchPage'; 
+import PrivateRoute from './components/PrivateRoute';
+import { AuthProvider } from './context/AuthContext';
 
 const AppLayout: React.FC = () => {
-
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/search" element={<PrivateRoute><SearchPage /></PrivateRoute>} />
+      <Route path="/match/:id" element={<PrivateRoute><MatchPage /></PrivateRoute>} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 };
-
 const App: React.FC = () => (
-  <FavoritesProvider>
-    <Router>
-      <AppLayout />
-    </Router>
-  </FavoritesProvider>
+  <AuthProvider>
+    <FavoritesProvider>
+      <Router>
+        <AppLayout />
+      </Router>
+    </FavoritesProvider>
+  </AuthProvider>
 );
+
 
 export default App;

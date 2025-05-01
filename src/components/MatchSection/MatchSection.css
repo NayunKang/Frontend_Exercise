@@ -1,0 +1,31 @@
+.match-instruction {
+  color: #333; 
+  text-align: center;
+  font-size: 1rem;
+  margin: 24px 0 8px;
+}
+
+.match-section {
+  text-align: center;
+  margin-bottom: 24px; 
+}
+
+.match-button {
+  padding: 12px 24px;
+  background: #faad2f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.match-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.match-button:hover:enabled {
+  background: #e6991b;
+} 

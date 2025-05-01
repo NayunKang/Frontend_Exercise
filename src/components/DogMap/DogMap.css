@@ -1,0 +1,18 @@
+/* Style for the map container */
+.map-wrapper {
+  max-width: 1200px; 
+  margin: 24px auto;
+  border-radius: 12px;
+  overflow: hidden; 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  height: 400px; 
+}
+
+.leaflet-control-container {
+  z-index: 1000; 
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+} 
