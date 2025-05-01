@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DogCard from '../../components/Dogcard/Dogcard';
 import { Dog } from '../../types/Dog';
-import { getBreeds, searchDogs, getDogsByIds } from '../../services/dogService';
+import {
+  getBreeds,
+  searchDogs,
+  getDogsByIds,
+  findMatch,
+} from '../../services/dogService';
 import { useFavorites } from '../../context/FavoritesContext';
 import './SearchPage.css';
 
@@ -18,11 +24,12 @@ const SearchPage: React.FC = () => {
   const [favoriteDogs, setFavoriteDogs] = useState<Dog[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [page, setPage] = useState(0);
+  const navigate = useNavigate();
 
   const size = 15;
   const totalPages = Math.ceil(totalCount / size);
 
-  // 1) Load breed list once
+  // Load breed list once
   useEffect(() => {
     (async () => {
       try {
@@ -34,10 +41,9 @@ const SearchPage: React.FC = () => {
     })();
   }, []);
 
-  // 2) Search for dog IDs when filters change (skip when in Favorites Only)
+  // Search for dog IDs when filters change
   useEffect(() => {
     if (showFavoritesOnly) return;
-
     (async () => {
       try {
         const data = await searchDogs({
@@ -57,10 +63,9 @@ const SearchPage: React.FC = () => {
     })();
   }, [selectedBreed, page, ageMin, ageMax, zipCode, showFavoritesOnly]);
 
-  // 3) Fetch dog details for the current page
+  // Fetch dog details for current page
   useEffect(() => {
     if (showFavoritesOnly) return;
-
     (async () => {
       if (!dogIds.length) {
         setDogs([]);
@@ -75,13 +80,12 @@ const SearchPage: React.FC = () => {
     })();
   }, [dogIds, showFavoritesOnly]);
 
-  // 4) When toggling into "Favorites Only", load all favorited dogs
+  // Load favorites-only list
   useEffect(() => {
     if (!showFavoritesOnly) {
       setFavoriteDogs([]);
       return;
     }
-
     (async () => {
       if (!favorites.length) {
         setFavoriteDogs([]);
@@ -96,7 +100,17 @@ const SearchPage: React.FC = () => {
     })();
   }, [showFavoritesOnly, favorites]);
 
-  // Reset everything
+  // Navigate to match page
+  const handleFindMatch = async () => {
+    try {
+      const { match: matchId } = await findMatch(favorites);
+      navigate(`/match/${matchId}`);
+    } catch {
+      alert('Unable to find a match—please try again.');
+    }
+  };
+
+  // Reset filters
   const resetFilters = () => {
     setSelectedBreed('');
     setAgeMin(0);
@@ -107,7 +121,6 @@ const SearchPage: React.FC = () => {
     setFavoriteDogs([]);
   };
 
-  // Choose which list to render
   const displayList = showFavoritesOnly ? favoriteDogs : dogs;
 
   return (
@@ -191,7 +204,32 @@ const SearchPage: React.FC = () => {
         </button>
       </section>
 
-      {/* Pagination (hidden in Favorites Only) */}
+      {/* Instruction & Match Button */}
+      {!showFavoritesOnly && (
+        <>
+          <p className="match-instruction">
+            Select your favorite pups above, then click “Find My Match” to discover your perfect companion!
+          </p>
+          <div className="match-section">
+            <button
+              className="match-button"
+              onClick={handleFindMatch}
+              disabled={favorites.length === 0}
+            >
+              {favorites.length === 0 ? 'Select Favorites to Enable' : 'Find My Match'}
+            </button>
+          </div>
+        </>
+      )}
+
+      {/* Dog Grid */}
+      <main className="dog-list" role="list">
+        {displayList.map((dog) => (
+          <DogCard key={dog.id} dog={dog} />
+        ))}
+      </main>
+
+      {/* Pagination moved to the very bottom */}
       {!showFavoritesOnly && (
         <div className="hero-pagination" aria-label="Pagination">
           <button
@@ -211,13 +249,6 @@ const SearchPage: React.FC = () => {
           </button>
         </div>
       )}
-
-      {/* Dog Grid */}
-      <main className="dog-list" role="list">
-        {displayList.map((dog) => (
-          <DogCard key={dog.id} dog={dog} />
-        ))}
-      </main>
     </div>
   );
 };

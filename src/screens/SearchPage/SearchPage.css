@@ -175,3 +175,61 @@
     background: #f0f0f0;
   }
   
+  /* Match button wrapper */
+.match-section {
+    text-align: center;
+    margin: 24px 0;
+  }
+  
+  .match-button {
+    padding: 12px 24px;
+    background: #faad2f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .match-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .match-button:hover:enabled {
+    background: #e6991b;
+  }
+  
+  .match-error {
+    color: #bf4740;
+    margin-top: 8px;
+  }
+  
+  .match-result {
+    max-width: 360px;
+    margin: 32px auto;
+    padding: 16px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  
+  .match-result h2 {
+    margin-bottom: 16px;
+    color: #333;
+  }
+  
+  .match-instruction {
+    color: #000;    
+    text-align: center;
+    font-size: 1rem;
+    margin: 16px 0 8px;
+  }
+  
+  .match-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
