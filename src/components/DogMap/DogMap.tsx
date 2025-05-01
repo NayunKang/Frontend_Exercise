@@ -11,6 +11,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Location } from '../../types/Locations';
 
+// Leaflet 아이콘 설정
 delete ((L.Icon.Default.prototype as unknown) as { _getIconUrl?: string })._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
@@ -45,10 +46,10 @@ const DogMap: React.FC<DogMapProps> = ({
       typeof loc.latitude === 'number' && typeof loc.longitude === 'number'
   );
 
-  const initialMapCenter: [number, number] = 
+  const initialMapCenter: [number, number] =
     validLocations.length > 0
       ? [validLocations[0].latitude, validLocations[0].longitude]
-      : [37.7749, -122.4194];
+      : [37.7749, -122.4194]; // fallback to SF
 
   return (
     <MapContainer center={initialMapCenter} zoom={10} style={{ height: 400, width: '100%' }} scrollWheelZoom={false}>
@@ -64,7 +65,15 @@ const DogMap: React.FC<DogMapProps> = ({
           <Marker position={center}>
             <Popup>Search Center</Popup>
           </Marker>
-          <Circle center={center} radius={radiusKm * 1000} pathOptions={{ color: 'blue', fillColor: 'blue', fillOpacity: 0.1 }}/>
+          <Circle
+            center={center}
+            radius={radiusKm * 1000}
+            pathOptions={{
+              color: 'blue',
+              fillColor: 'blue',
+              fillOpacity: 0.1,
+            }}
+          />
         </>
       )}
 
