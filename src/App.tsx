@@ -1,16 +1,33 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
+import { FavoritesProvider } from './context/FavoritesContext';
 import LoginPage from './screens/LoginPage/LoginPage';
 import SearchPage from './screens/SearchPage/SearchPage';
 
-function App() {
+const AppLayout: React.FC = () => {
+
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
-}
+};
+
+const App: React.FC = () => (
+  <FavoritesProvider>
+    <Router>
+      <AppLayout />
+    </Router>
+  </FavoritesProvider>
+);
 
 export default App;
