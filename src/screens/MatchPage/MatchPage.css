@@ -1,0 +1,34 @@
+.match-page-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    text-align: center;
+  }
+  
+  .match-page-container h1 {
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .match-loading,
+  .match-error {
+    text-align: center;
+    font-size: 1rem;
+    color: #666;
+    margin-top: 2rem;
+  }
+  
+  .back-button {
+    margin-top: 1.5rem;
+    padding: 8px 16px;
+    background: #faad2f;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .back-button:hover {
+    background: #e6991b;
+  }
+  

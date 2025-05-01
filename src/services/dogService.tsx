@@ -46,3 +46,14 @@ export const getDogsByIds = async (ids: string[]) => {
   });
   return res.json();
 };
+
+export const findMatch = async (ids: string[]): Promise<{ match: string }> => {
+    const res = await fetch(`${BASE_URL}/dogs/match`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(ids),
+    });
+    if (!res.ok) throw new Error('Failed to generate match');
+    return res.json();
+  };
