@@ -17,7 +17,6 @@ import React, {
   export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({
     children,
   }) => {
-    // 1) load from localStorage on init
     const [favorites, setFavorites] = useState<string[]>(() => {
       try {
         return JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -26,7 +25,6 @@ import React, {
       }
     });
   
-    // 2) write back on change
     useEffect(() => {
       localStorage.setItem('favorites', JSON.stringify(favorites));
     }, [favorites]);
