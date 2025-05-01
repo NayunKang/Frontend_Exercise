@@ -1,54 +1,84 @@
-# React + TypeScript + Vite
+# 🐾 Fetch Dog Matcher
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A feature-rich dog adoption interface built with **React**, allowing users to browse, filter, and match with adoptable dogs using the [Fetch Frontend API](https://frontend-take-home-service.fetch.com).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+### ✅ User Authentication
+- Login with **name and email**
+- Session handled with secure `HttpOnly` cookies
+- API calls include `credentials: 'include'` for authenticated access
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🐶 Dog Search
+- Filter dogs by **breed**, **age**, and **location**
+- Location filters (choose one):
+  - By ZIP Code
+  - By City
+  - By clicking on a **map** and selecting a radius in kilometers
+- Results support:
+  - **Pagination**
+  - **Sorting** by breed, name, or age in ascending or descending order
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### ❤️ Favorite & Match
+- Users can favorite dogs from the list
+- Generate a match by submitting favorites to the `/dogs/match` endpoint
+- Matched dog is shown on a dedicated page
+
+### 🗺 Interactive Map Filtering
+- Select center by clicking the map
+- Adjust radius via slider (1–50km)
+- Bounding box is calculated to query ZIP codes from the `/locations/search` API
+
+### 🔐 Logout
+- Fully handled session logout via `/auth/logout` endpoint
+- Logout clears session and redirects to login page
+
+---
+
+## 🧪 Tech Stack
+
+| Area        | Tech                                       |
+|-------------|--------------------------------------------|
+| Frontend    | React, TypeScript, Vite                    |
+| Routing     | React Router                               |
+| Map         | React Leaflet (w/ Circle Radius Search)    |
+| Styling     | Custom CSS                   |
+| API Auth    | Cookie-based session with `credentials: include` |
+| Deployment  | Vercel                                      |
+---
+
+## 🚀 Deployment
+
+**Live site:** [https://frontend-exercise-zeta.vercel.app/](https://frontend-exercise-zeta.vercel.app/)  
+**Repo:** [https://github.com/NayunKang/Frontend_Exercise.git](https://github.com/NayunKang/Frontend_Exercise.git)
+---
+
+
+## 📂 Setup Instructions
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/your-username/fetch-dog-matcher.git
+cd fetch-dog-matcher
+```
+### 2. Install dependencies
+```bash
+npm install
+```
+### 3. Run locally
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 📚 API Endpoints Used
+Endpoint	Purpose
+POST /auth/login	Authenticate user
+POST /auth/logout	End session
+GET /dogs/breeds	Load all available breeds
+GET /dogs/search	Search/filter dog IDs
+POST /dogs	Fetch details for selected dogs
+POST /dogs/match	Submit favorites, get 1 match
+POST /locations	Fetch location info by ZIP
+POST /locations/search	Search for ZIPs via geo/city
